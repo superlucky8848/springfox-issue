@@ -82,7 +82,6 @@ public class ExampleTest
         type = "List<DocTag>",
         examples = @Example({@ExampleProperty(mediaType = "application/json", value = EXAMPLE_ADD_TAGS)})
     )})
-
     @PostMapping(value = "/addTags3")
     public List<DocTag> addTags3(
         @ApiParam(value = "tags array", required = true) 
