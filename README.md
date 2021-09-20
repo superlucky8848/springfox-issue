@@ -8,3 +8,4 @@ Visit [http://localhost:8080/swagger-ui/#/ExampleTest](http://localhost:8080/swa
 
 Visit [http://localhost:8080/v2/api-docs?group=exampleTest](http://localhost:8080/v2/api-docs?group=exampleTest) to see generated api schema in json.
 
+**I find a workaround to this issus and put it into the branch "workaround".**
