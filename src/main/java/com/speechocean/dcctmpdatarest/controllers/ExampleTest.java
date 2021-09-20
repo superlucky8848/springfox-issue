@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.speechocean.dcctmpdatarest.models.DocTag;
+import com.speechocean.dcctmpdatarest.models.ApiHelper.DocTagInsertExample;
+import com.speechocean.dcctmpdatarest.models.ApiHelper.DocTagUpdateExample;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -101,6 +103,35 @@ public class ExampleTest
     public DocTag updateTag3(
         @ApiParam(value = "tag to update，must have _id", required = true)
         @RequestBody(required = true) final DocTag tag)
+    {
+        DocTag result = new DocTag();
+        return result;
+    }
+
+    // Test Controller for workaround to provide excample using @ApiImplicitParam
+    @ApiOperation(value = "Insert Tag(workaround)", notes = "Insert tag in body, must no _id")
+    @ApiImplicitParams({@ApiImplicitParam(
+        name = "tag",
+        value = "tag to insert, must no _id",
+        required = true,
+        dataTypeClass = DocTagInsertExample.class
+    )})
+    @PostMapping(value = "/FixedInsertTag")
+    public DocTag FixedInsertTag(@RequestBody(required = true) final DocTag tag)
+    {
+        DocTag result = new DocTag();
+        return result;
+    }
+    // Test Controller for workaround to provide excample using @ApiImplicitParam
+    @ApiOperation(value = "Update Tag(workaround)", notes = "Update tag in body, must have _id")
+    @ApiImplicitParams({@ApiImplicitParam(
+        name = "tag",
+        value = "tag to update, must have _id",
+        required = true,
+        dataTypeClass = DocTagUpdateExample.class
+    )})
+    @PostMapping(value = "/FixedUpateTag")
+    public DocTag FixedUpateTag(@RequestBody(required = true) final DocTag tag)
     {
         DocTag result = new DocTag();
         return result;

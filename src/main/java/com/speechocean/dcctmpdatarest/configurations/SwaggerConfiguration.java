@@ -2,6 +2,11 @@ package com.speechocean.dcctmpdatarest.configurations;
 
 import java.util.ArrayList;
 
+import com.fasterxml.classmate.TypeResolver;
+import com.speechocean.dcctmpdatarest.models.ApiHelper.DocTagInsertExample;
+import com.speechocean.dcctmpdatarest.models.ApiHelper.DocTagUpdateExample;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,6 +22,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration 
 {
+
+    @Autowired
+    TypeResolver typeResolver;
+
     @Bean
     public Docket exampleTestDocket()
     {
@@ -27,7 +36,11 @@ public class SwaggerConfiguration
             .build()
             .pathMapping("/")
             .apiInfo(apiInfo())
-            .groupName("exampleTest");
+            .groupName("exampleTest")
+            //Add helper models for excample generation workaround
+            .additionalModels(
+                typeResolver.resolve(DocTagInsertExample.class), 
+                typeResolver.resolve(DocTagUpdateExample.class));
     }
 
     private ApiInfo apiInfo()
